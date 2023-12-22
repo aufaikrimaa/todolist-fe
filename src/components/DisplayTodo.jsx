@@ -35,9 +35,27 @@ const DisplayTodo = () => {
     return (
         <div className="display-todo">
             <div className="tab-menu flex items-center justify-center gap-20 mb-3">
-                <button onClick={() => setFilter('all')}>All</button>
-                <button onClick={() => setFilter('active')}>Active</button>
-                <button onClick={() => setFilter('completed')}>Completed</button>
+                <button
+                    onClick={() => setFilter('all')}
+                    className={`relative transition-colors duration-300 ${filter === 'all' ? 'text-teal-500' : 'text-gray-600 hover:text-teal-500'}`}
+                >
+                    All
+                    <div className={`absolute w-full h-1 bg-teal-500 bottom-0 left-0 transition-transform duration-300 ${filter === 'all' ? 'scale-x-100 rounded-md' : 'scale-x-0 hover:scale-x-100 rounded-md'}`}></div>
+                </button>
+                <button
+                    onClick={() => setFilter('active')}
+                    className={`relative transition-colors duration-300 ${filter === 'active' ? 'text-teal-500' : 'text-gray-600 hover:text-teal-500'}`}
+                >
+                    Active
+                    <div className={`absolute w-full h-1 bg-teal-500 bottom-0 left-0 transition-transform duration-300 ${filter === 'active' ? 'scale-x-100 rounded-md' : 'scale-x-0 hover:scale-x-100 rounded-md'}`}></div>
+                </button>
+                <button
+                    onClick={() => setFilter('completed')}
+                    className={`relative transition-colors duration-300 ${filter === 'completed' ? 'text-teal-500' : 'text-gray-600 hover:text-teal-500'}`}
+                >
+                    Completed
+                    <div className={`absolute w-full h-1 bg-teal-500 bottom-0 left-0 transition-transform duration-300 ${filter === 'completed' ? 'scale-x-100 rounded-md' : 'scale-x-0 hover:scale-x-100 rounded-md'}`}></div>
+                </button>
             </div>
             <div className="flex items-center justify-center">
                 <ul className='w-1/5'>
@@ -63,11 +81,16 @@ const DisplayTodo = () => {
                                                 handleEditTodo(todo.id, newText);
                                             }
                                         }}
+                                        className="transform hover:scale-125 transition-transform duration-300"
                                     >
-                                        <img src={edit} alt='edit' className='w-6' />
+                                        <img src={edit} alt="edit" className="w-6" />
                                     </button>
-                                    <button onClick={() => handleDeleteTodo(todo.id)}> <img src={remove} alt='delete' className='w-7' /></button>
-
+                                    <button
+                                        onClick={() => handleDeleteTodo(todo.id)}
+                                        className="transform hover:scale-125 transition-transform duration-300"
+                                    >
+                                        <img src={remove} alt="delete" className="w-7" />
+                                    </button>
                                 </div>
 
                             </div>

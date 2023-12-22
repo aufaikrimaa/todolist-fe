@@ -15,8 +15,15 @@ const InputTodo = () => {
 
     return (
         <div className="input-todo flex items-center justify-center mb-8 ">
-            <input type="text" value={text} onChange={(e) => setText(e.target.value)} className='border-2 rounded-lg w-2/5 py-2 px-4 mx-2' placeholder='what do you wanna do today?' />
-            <button onClick={handleAddTodo} className='rounded-lg mx-2 px-4 py-3 bg-cyan-200'> add </button>
+            <input
+                type="text" value={text} onChange={(e) => setText(e.target.value)}
+                className='border-2 rounded-lg w-2/5 py-2 px-4 mx-2'
+                placeholder='what do you wanna do today?' />
+            <button
+                onClick={handleAddTodo}
+                className="rounded-lg mx-2 px-4 py-3 bg-cyan-200 transition-transform duration-300 hover:scale-110">
+                add
+            </button>
         </div>
     );
 };
