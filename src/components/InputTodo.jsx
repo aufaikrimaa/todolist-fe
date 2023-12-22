@@ -21,7 +21,7 @@ const InputTodo = () => {
                 placeholder='what do you wanna do today?' />
             <button
                 onClick={handleAddTodo}
-                className="rounded-lg mx-2 px-4 py-3 bg-cyan-200 transition-transform duration-300 hover:scale-110">
+                className="rounded-lg mx-2 px-4 py-3 bg-teal-600 transition-transform duration-300 hover:scale-110 text-white">
                 add
             </button>
         </div>

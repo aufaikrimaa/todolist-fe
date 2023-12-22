@@ -69,6 +69,7 @@ const DisplayTodo = () => {
                                             type="checkbox"
                                             checked={todo.completed}
                                             onChange={() => handleToggleTodo(todo.id)}
+                                            className={`form-checkbox h-4 w-4 accent-teal-600`}
                                         />
                                         <span
                                             style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
