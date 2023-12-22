@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../redux/slice/todoSlice';
 
-const InputTodo = () => {
-    const [text, setText] = useState('');
+const InputTodo = ({ inputValue }) => {
+    const [text, setText] = useState(inputValue || '');
     const dispatch = useDispatch();
 
     const handleAddTodo = () => {
@@ -26,6 +27,10 @@ const InputTodo = () => {
             </button>
         </div>
     );
+};
+
+InputTodo.propTypes = {
+    inputValue: PropTypes.string,
 };
 
 export default InputTodo;
