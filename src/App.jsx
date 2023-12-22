@@ -1,4 +1,4 @@
-import InputTodo from "./components/inputTodo"
+import InputTodo from "./components/InputTodo"
 import BackgroundIcons from "./components/BackgroundIcons"
 import DisplayTodo from "./components/DisplayTodo"
 import todo from './assets/img/todolist.svg'
