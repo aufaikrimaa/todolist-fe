@@ -22,7 +22,7 @@ const InputTodo = ({ inputValue }) => {
                 placeholder='What to do' />
             <button
                 onClick={handleAddTodo}
-                className="rounded-lg mx-2 px-4 py-3 bg-teal-600 transition-transform duration-300 hover:scale-110 text-white">
+                className="rounded-lg mx-2 px-4 py-3 bg-teal-600 transition-transform duration-300 hover:scale-110 text-white font-bold">
                 add
             </button>
         </div>
