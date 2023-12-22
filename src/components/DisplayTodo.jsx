@@ -35,7 +35,7 @@ const DisplayTodo = () => {
 
     return (
         <div className="display-todo">
-            <div className="tab-menu flex items-center justify-center gap-20 mb-3">
+            <div className="tab-menu flex items-center justify-center gap-20 md:gap-10 mb-3">
                 <button
                     onClick={() => setFilter('all')}
                     className={`relative transition-colors duration-300 ${filter === 'all' ? 'text-teal-500' : 'text-gray-600 hover:text-teal-500'}`}
@@ -59,7 +59,7 @@ const DisplayTodo = () => {
                 </button>
             </div>
             <div className="flex items-center justify-center">
-                <ul className='w-1/5'>
+                <ul className='w-1/5 xl:w-2/5 md:w-3/5'>
                     <TransitionGroup>
                         {filteredTodos.map((todo) => (
                             <CSSTransition key={todo.id} timeout={500} classNames="fadeIn">

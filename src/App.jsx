@@ -9,7 +9,7 @@ function App() {
     <>
       <div>
         <BackgroundIcons></BackgroundIcons>
-        <div className="todos">
+        <div className="todos xl:mt-30">
           <h1 className="text-4xl text-center font-bold mb-10 flex items-center justify-center">
             Plan for today <img src={todo} className="w-15" />
           </h1>
