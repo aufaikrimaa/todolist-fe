@@ -8,7 +8,7 @@
 }
 
 .animated-icon {
-    animation: floatAnimation 7s infinite ease-in-out;
+    animation: floatAnimation 5s infinite ease-in-out;
 }
 
 @keyframes floatAnimation {
