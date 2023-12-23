@@ -9,6 +9,8 @@ const DisplayTodo = () => {
     const [filter, setFilter] = useState('all');
     const todos = useSelector((state) => state.todos.todos);
     const dispatch = useDispatch();
+    const [editingTodo, setEditingTodo] = useState(null);
+    const [newText, setNewText] = useState('');
 
     const filteredTodos = (() => {
         switch (filter) {
@@ -32,6 +34,20 @@ const DisplayTodo = () => {
     const handleEditTodo = (id, newText) => {
         dispatch(editTodo({ id, newText }));
     };
+
+    const handleEditClick = (todo) => {
+        setEditingTodo(todo.id);
+        setNewText(todo.text);
+    };
+
+    const handleSaveClick = () => {
+        if (newText.trim() !== '') {
+            handleEditTodo(editingTodo, newText);
+            setEditingTodo(null);
+            setNewText('');
+        }
+    };
+
 
     return (
         <div className="display-todo">
@@ -69,34 +85,43 @@ const DisplayTodo = () => {
                                             type="checkbox"
                                             checked={todo.completed}
                                             onChange={() => handleToggleTodo(todo.id)}
-                                            className={`form-checkbox h-4 w-4 accent-teal-600`}
+                                            className='h-4 w-4 accent-teal-600'
                                         />
-                                        <span
-                                            style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-                                            className='w-3/4'
-                                        >
-                                            {todo.text}
-                                        </span>
-                                        <div className="flex items-center space-x-4 justify-end">
-                                            <button
-                                                onClick={() => {
-                                                    const newText = prompt('Enter new text:', todo.text);
-                                                    if (newText !== null) {
-                                                        handleEditTodo(todo.id, newText);
-                                                    }
-                                                }}
-                                                className="transform hover:scale-125 transition-transform duration-300"
-                                            >
-                                                <img src={edit} alt="edit" className="w-6" />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDeleteTodo(todo.id)}
-                                                className="transform hover:scale-125 transition-transform duration-300"
-                                            >
-                                                <img src={remove} alt="delete" className="w-7" />
-                                            </button>
-                                        </div>
+                                        {editingTodo === todo.id ? (
+                                            <div className="flex w-3/4">
+                                                <input
+                                                    type="text"
+                                                    value={newText}
+                                                    onChange={(e) => setNewText(e.target.value)}
+                                                    className="border-b-2 border-teal-500 outline-none bg-transparent"
+                                                />
+                                                <button onClick={handleSaveClick} className="rounded-lg mx-1 px-2 py-1 ml-6 border-2 border-teal-600 transition-transform duration-300 hover:scale-110 text-teal-500 font-bold text-xs">oke</button>
+                                            </div>
 
+                                        ) : (
+                                            <span
+                                                style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                                                className='w-3/4'
+                                            >
+                                                {todo.text}
+                                            </span>
+                                        )}
+                                        {editingTodo !== todo.id && (
+                                            <div className="flex items-center space-x-4 justify-end">
+                                                <button
+                                                    onClick={() => handleEditClick(todo)}
+                                                    className="transform hover:scale-125 transition-transform duration-300"
+                                                >
+                                                    <img src={edit} alt="edit" className="w-6" />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteTodo(todo.id)}
+                                                    className="transform hover:scale-125 transition-transform duration-300"
+                                                >
+                                                    <img src={remove} alt="delete" className="w-7" />
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 </li>
                             </CSSTransition>

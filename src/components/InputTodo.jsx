@@ -18,7 +18,7 @@ const InputTodo = ({ inputValue }) => {
         <div className="input-todo flex items-center justify-center mb-8 ">
             <input
                 type="text" value={text} onChange={(e) => setText(e.target.value)}
-                className='border-2 rounded-lg w-2/5 py-2 px-4 mx-2'
+                className='border-2 rounded-lg w-2/5 py-2 px-4 mx-2 bg-transparent'
                 placeholder='What to do' />
             <button
                 onClick={handleAddTodo}
