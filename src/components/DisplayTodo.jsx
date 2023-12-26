@@ -75,58 +75,67 @@ const DisplayTodo = () => {
                 </button>
             </div>
             <div className="flex items-center justify-center">
-                <ul className='w-1/5 xl:w-2/5 md:w-3/5'>
-                    <TransitionGroup>
-                        {filteredTodos.map((todo) => (
-                            <CSSTransition key={todo.id} timeout={500} classNames="fadeIn">
-                                <li key={todo.id} className='flex items-center justify-between w-full border-2 pl-4 pr-2 py-2 my-2'>
-                                    <div className="flex items-center space-x-4 w-full">
-                                        <input
-                                            type="checkbox"
-                                            checked={todo.completed}
-                                            onChange={() => handleToggleTodo(todo.id)}
-                                            className='h-4 w-4 accent-teal-600'
-                                        />
-                                        {editingTodo === todo.id ? (
-                                            <div className="flex w-3/4">
-                                                <input
-                                                    type="text"
-                                                    value={newText}
-                                                    onChange={(e) => setNewText(e.target.value)}
-                                                    className="border-b-2 border-teal-500 outline-none bg-transparent"
-                                                />
-                                                <button onClick={handleSaveClick} className="rounded-lg mx-1 px-2 py-1 ml-6 border-2 border-teal-600 transition-transform duration-300 hover:scale-110 text-teal-500 font-bold text-xs">oke</button>
-                                            </div>
+                <ul>
+                    {filteredTodos.length > 0 ? (
+                        <TransitionGroup>
+                            {filteredTodos.map((todo) => (
+                                <CSSTransition key={todo.id} timeout={500} classNames="fadeIn">
+                                    <li key={todo.id} className='flex items-center justify-between  border-2 pl-4 pr-2 py-2 my-2'>
+                                        <div className="flex items-center space-x-4">
+                                            <input
+                                                type="checkbox"
+                                                checked={todo.completed}
+                                                onChange={() => handleToggleTodo(todo.id)}
+                                                className='h-3 w-3 accent-teal-600'
+                                            />
+                                            {editingTodo === todo.id ? (
+                                                <div className="flex">
+                                                    <input
+                                                        type="text"
+                                                        value={newText}
+                                                        onChange={(e) => setNewText(e.target.value)}
+                                                        className="border-b-2 border-teal-500 outline-none bg-transparent w-45 lg:w-43 md:w-30"
+                                                    />
+                                                    <button onClick={handleSaveClick} className="rounded-lg mx-1 px-2 py-1 ml-6 border-2 border-teal-600 transition-transform duration-300 hover:scale-110 text-teal-500 font-bold text-xs">oke</button>
+                                                </div>
 
-                                        ) : (
-                                            <span
-                                                style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-                                                className='w-3/4'
-                                            >
-                                                {todo.text}
-                                            </span>
-                                        )}
-                                        {editingTodo !== todo.id && (
-                                            <div className="flex items-center space-x-4 justify-end">
-                                                <button
-                                                    onClick={() => handleEditClick(todo)}
-                                                    className="transform hover:scale-125 transition-transform duration-300"
+                                            ) : (
+                                                <span
+                                                    style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                                                    className='w-45 lg:w-43 md:w-30'
                                                 >
-                                                    <img src={edit} alt="edit" className="w-6" />
-                                                </button>
-                                                <button
-                                                    onClick={() => handleDeleteTodo(todo.id)}
-                                                    className="transform hover:scale-125 transition-transform duration-300"
-                                                >
-                                                    <img src={remove} alt="delete" className="w-7" />
-                                                </button>
-                                            </div>
-                                        )}
-                                    </div>
-                                </li>
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
+                                                    {todo.text}
+                                                </span>
+                                            )}
+                                            {editingTodo !== todo.id && (
+                                                <div className="flex items-center space-x-4 justify-end">
+                                                    <button
+                                                        onClick={() => handleEditClick(todo)}
+                                                        className="transform hover:scale-125 transition-transform duration-300"
+                                                    >
+                                                        <img src={edit} alt="edit" className="w-5" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleDeleteTodo(todo.id)}
+                                                        className="transform hover:scale-125 transition-transform duration-300"
+                                                    >
+                                                        <img src={remove} alt="delete" className="w-5" />
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </li>
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
+                    ) : (
+                        <p className="text-gray-600 text-center italic text-xs mt-10">
+                            {filter === 'all' ? 'The todo list is empty, Please add some todos!' :
+                                filter === 'active' ? "You don't have any activities to do yet" :
+                                    filter === 'completed' ? "You haven't completed any of your activities yet" : ''
+                            }
+                        </p>
+                    )}
                 </ul>
             </div>
 
